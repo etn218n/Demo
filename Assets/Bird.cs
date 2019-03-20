@@ -82,6 +82,7 @@ public class Bird : MonoBehaviour
     private IEnumerator Launch()
     {
         rb2d.gravityScale = 1f;
+
         rb2d.constraints  = RigidbodyConstraints2D.FreezeRotation;
 
         yield return new WaitForSeconds(0.2f);
