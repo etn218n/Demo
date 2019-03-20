@@ -46,7 +46,8 @@ public class Bird : MonoBehaviour
         springJoint2d.enabled = false;
 
         gameObject.transform.right = pivotPoint.position - this.gameObject.transform.position;
-        anim.SetInteger("StateID", 1);
+
+        SetAnimation(BirdState.Init);
 
         while (true)
         {
@@ -58,20 +59,23 @@ public class Bird : MonoBehaviour
 
     private IEnumerator Aim()
     {
-        anim.SetInteger("StateID", 2);
+        // Enter State
+        SetAnimation(BirdState.Aim);
 
+        //Update State
         while (true)
         {
-            if (MouseReleased) { birdState = BirdState.Launch; break; }
-
-            this.gameObject.transform.right = pivotPoint.position - this.gameObject.transform.position;
+            gameObject.transform.right = pivotPoint.position - gameObject.transform.position;
 
             Vector3 dragPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             rb2d.MovePosition(dragPos);
 
+            if (MouseReleased) { birdState = BirdState.Launch; break; }
+
             yield return null;
         }
 
+        //Exit State
         springJoint2d.enabled = true;
     }
 
@@ -85,19 +89,27 @@ public class Bird : MonoBehaviour
         rb2d.constraints = RigidbodyConstraints2D.None;
         springJoint2d.breakForce = 20f;
 
-        anim.SetInteger("StateID", 3);
+        SetAnimation(BirdState.Launch);
 
-        yield return new WaitForSeconds(2f);
+        float maxWaitTime = 4f;
+        float waitTime    = 0f;
 
-        birdState = BirdState.Disappear;
+        while (true)
+        {
+            waitTime += Time.deltaTime;
+
+            if (waitTime > maxWaitTime)          { birdState = BirdState.Disappear; break; }
+            if (rb2d.velocity.magnitude < 0.01f) { birdState = BirdState.Disappear; break; }
+
+            yield return null;
+        }
     }
 
     private IEnumerator Disappear()
     {
-        yield return new WaitForSeconds(3f);
+        SetAnimation(BirdState.Disappear);
 
-        anim.SetInteger("StateID", 4);
-
+        // wait for Disappear Animation to complete
         yield return new WaitForSeconds(0.2f);
 
         Destroy(this.gameObject);
@@ -116,4 +128,6 @@ public class Bird : MonoBehaviour
             }
         }
     }
+
+    private void SetAnimation(BirdState state) { anim.SetInteger("StateID", (int)state); }
 }
