@@ -16,7 +16,7 @@ public class Bird : MonoBehaviour
     private Rigidbody2D rb2d;
     private SpringJoint2D springJoint2d;
     private Animator anim;
-    private Transform pivotPoint;
+    private Transform aimPoint;
 
     private void Awake()
     {
@@ -24,7 +24,7 @@ public class Bird : MonoBehaviour
         anim          = GetComponent<Animator>();
         springJoint2d = GetComponent<SpringJoint2D>();
 
-        pivotPoint = springJoint2d.connectedBody.transform;
+        aimPoint = springJoint2d.connectedBody.transform;
     }
 
     private void Start()
@@ -45,7 +45,7 @@ public class Bird : MonoBehaviour
         rb2d.gravityScale = 0f;
         springJoint2d.enabled = false;
 
-        gameObject.transform.right = pivotPoint.position - this.gameObject.transform.position;
+        gameObject.transform.right = aimPoint.position - this.gameObject.transform.position;
 
         SetAnimation(BirdState.Init);
 
@@ -65,7 +65,7 @@ public class Bird : MonoBehaviour
         //Update State
         while (true)
         {
-            gameObject.transform.right = pivotPoint.position - gameObject.transform.position;
+            gameObject.transform.right = aimPoint.position - gameObject.transform.position;
 
             Vector3 dragPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             rb2d.MovePosition(dragPos);
