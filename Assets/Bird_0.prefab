@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 3521795071542743155}
   - component: {fileID: 3521795071542743148}
   - component: {fileID: 3521795071542743149}
+  - component: {fileID: 1396201842}
+  - component: {fileID: 1396201843}
   m_Layer: 0
   m_Name: Bird_0
   m_TagString: Untagged
@@ -70,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f96773cc024566d40898ba85c054c383, type: 3}
+  m_Sprite: {fileID: 21300324, guid: 6f182b4c2c542c542930efb040e71ee1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -94,9 +96,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.08, y: -0.1}
+  m_Offset: {x: 0.05, y: -0.05}
   serializedVersion: 2
-  m_Radius: 0.38
+  m_Radius: 0.28
 --- !u!50 &3521795071542743149
 Rigidbody2D:
   serializedVersion: 4
@@ -111,10 +113,42 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 1
   m_GravityScale: 1
   m_Material: {fileID: 6200000, guid: 6321e85da588176428acffe3a7ed08c1, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!231 &1396201842
+SpringJoint2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3521795071542743150}
+  m_Enabled: 1
+  serializedVersion: 4
+  m_EnableCollision: 0
+  m_ConnectedRigidBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_AutoConfigureConnectedAnchor: 0
+  m_Anchor: {x: 0, y: 0}
+  m_ConnectedAnchor: {x: 0, y: 0}
+  m_AutoConfigureDistance: 0
+  m_Distance: 0.005
+  m_DampingRatio: 0
+  m_Frequency: 1
+--- !u!114 &1396201843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3521795071542743150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f8f7e9d4dc803b41bc5ba1b0ef3a7cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
