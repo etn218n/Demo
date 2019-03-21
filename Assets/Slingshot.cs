@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Slingshot : MonoBehaviour
 {
-    private enum SlingshotState { Null, Unload, Load, Aim, Fire }
+    private enum SlingshotState { Null, Idle, Load, Aim, Fire }
     private      SlingshotState slingshotState;
 
     private bool MachineOn;
@@ -18,6 +18,13 @@ public class Slingshot : MonoBehaviour
     [SerializeField]
     private Transform aimPoint;
 
+    [SerializeField]
+    private Transform loadPoint;
+
+    public bool MouseDragged;
+    public bool MouseReleased;
+    public bool BirdLoaded;
+
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -25,55 +32,108 @@ public class Slingshot : MonoBehaviour
         bird = birdObject.GetComponent<Bird>();
     }
 
+    private void Start()
+    {
+        MachineOn = true;
+        slingshotState = SlingshotState.Idle;
+
+        StartCoroutine(SlingshotStateMachine());
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.L))
         {
-            birdObject.transform.position = aimPoint.position;
-
-            bird.LoadintoSlingshot = true;
-            bird.rb2d.gravityScale = 0f;
+            BirdLoaded = true;
         }
     }
 
-    private void OnMouseDrag()
+    private void OnMouseDrag() { MouseDragged  = true; }
+    private void OnMouseUp()   { MouseReleased = true; }
+
+    private IEnumerator Idle()
     {
-        if (birdObject != null && bird.LoadintoSlingshot == true)
+        while (true)
+        {
+            if (BirdLoaded) { slingshotState = SlingshotState.Load; break; }
+
+            yield return null;
+        }
+    }
+
+    private IEnumerator Load()
+    {
+        MouseDragged = false;
+
+        bird.LoadintoSlingshot = true;
+
+        bird.gameObject.transform.position = loadPoint.transform.position;
+
+        // Avoid OnMouseDrag conflict with Slingshot's Collider
+        bird.collider2d.enabled = false;
+
+        bird.rb2d.gravityScale  = 0f;
+
+        while (true)
+        {
+            if (MouseDragged) { slingshotState = SlingshotState.Aim; break; }
+
+            yield return null;
+        }
+
+        bird.MouseDragged = true;
+    }
+
+    private IEnumerator Aim()
+    {
+        MouseReleased = false;
+
+        while (true)
         {
             Vector2 dragPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
             rb2d.MovePosition(dragPos);
 
-            bird.transform.position = gameObject.transform.position;
+            bird.gameObject.transform.position = gameObject.transform.position;
 
             // Bird looks at the Aim Point
-            birdObject.transform.right = aimPoint.position - birdObject.transform.position;
+            bird.gameObject.transform.right    = aimPoint.position - birdObject.transform.position;
 
-            bird.MouseDragged = true;
+            if (MouseReleased) { slingshotState = SlingshotState.Fire; break; }
+
+            yield return null;
         }
+
+        bird.MouseReleased = true;
     }
 
-    private void OnMouseUp()
+    private IEnumerator Fire()
     {
-        if (birdObject != null && bird.MouseDragged == true)
-        {
-            bird.MouseReleased = true;
-            birdObject = null;
+        bird.collider2d.enabled = true;
 
-            bird.rb2d.velocity = (aimPoint.position - gameObject.transform.position) * bird.flySpeed;
-        }
+        bird.rb2d.gravityScale  = 1f;
+
+        if (bird.rb2d.gravityScale == 0f)
+            Debug.Log("SHHHHHHHHHHHHHHHHHHHHHHHHHHHHH");
+
+        bird.rb2d.velocity      = (aimPoint.position - gameObject.transform.position) * bird.flySpeed;
+
+        slingshotState = SlingshotState.Idle;
+
+        yield return null;
     }
 
     private IEnumerator SlingshotStateMachine()
     {
         while (MachineOn)
         {
+            Debug.Log("Slingshot: " + slingshotState);
             switch (slingshotState)
             {
-                case SlingshotState.Unload: yield return StartCoroutine(Unload()); break;
-                case SlingshotState.Aim:    yield return StartCoroutine(Aim());    break;
-                case SlingshotState.Load:   yield return StartCoroutine(Load());   break;
-                case SlingshotState.Fire:   yield return StartCoroutine(Fire());   break;
+                case SlingshotState.Idle: yield return StartCoroutine(Idle()); break;
+                case SlingshotState.Aim:  yield return StartCoroutine(Aim());  break;
+                case SlingshotState.Load: yield return StartCoroutine(Load()); break;
+                case SlingshotState.Fire: yield return StartCoroutine(Fire()); break;
             }
         }
     }

@@ -51,11 +51,6 @@ public class Bird : MonoBehaviour
     {
         SetAnimation(BirdState.OnSlingshot);
 
-        // Avoid OnMouseDrag conflict with Slingshot's Collider
-        collider2d.enabled = false;
-
-        rb2d.gravityScale = 0f;
-
         while (true)
         {
             if (MouseDragged) { birdState = BirdState.Aim; break; }
@@ -78,15 +73,10 @@ public class Bird : MonoBehaviour
         }
 
         //Exit State
-        collider2d.enabled = true;
     }
 
     private IEnumerator Fly()
     {
-        rb2d.gravityScale = 1f;
-
-        yield return new WaitForSeconds(0.2f);
-
         SetAnimation(BirdState.Fly);
 
         float maxWaitTime = 4f;
@@ -117,6 +107,7 @@ public class Bird : MonoBehaviour
     {
         while (MachineOn)
         {
+            Debug.Log("Bird: " + birdState);
             switch (birdState)
             {
                 case BirdState.Idle:        yield return StartCoroutine(Idle());        break;

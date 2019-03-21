@@ -528,10 +528,6 @@ PrefabInstance:
       propertyPath: birdObject
       value: 
       objectReference: {fileID: 1644482383}
-    - target: {fileID: 1645708233, guid: ba2e9e2e396fe97439baaf6ee5181f20, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba2e9e2e396fe97439baaf6ee5181f20, type: 3}
 --- !u!1 &1037521642
