@@ -14,6 +14,7 @@ public class Bird : MonoBehaviour
     private bool MouseReleased;
 
     private Rigidbody2D rb2d;
+    private Collider2D collider2d;
     private SpringJoint2D springJoint2d;
     private Animator anim;
     private Transform aimPoint;
@@ -22,6 +23,7 @@ public class Bird : MonoBehaviour
     {
         rb2d          = GetComponent<Rigidbody2D>();
         anim          = GetComponent<Animator>();
+        collider2d    = GetComponent<Collider2D>();
         springJoint2d = GetComponent<SpringJoint2D>();
 
         aimPoint = springJoint2d.connectedBody.transform;
@@ -108,6 +110,9 @@ public class Bird : MonoBehaviour
 
     private IEnumerator Disappear()
     {
+        collider2d.enabled = false;
+        rb2d.gravityScale  = 0f;
+
         SetAnimation(BirdState.Disappear);
 
         // wait for Disappear Animation to complete
