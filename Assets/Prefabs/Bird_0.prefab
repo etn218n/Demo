@@ -132,7 +132,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f8f7e9d4dc803b41bc5ba1b0ef3a7cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LoadintoSlingshot: 0
+  MouseDragged: 0
+  MouseReleased: 0
   aimPoint: {fileID: 0}
+  flySpeed: 10
 --- !u!95 &1396201838
 Animator:
   serializedVersion: 3
