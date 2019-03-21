@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class Slingshot : MonoBehaviour
 {
+    private enum SlingshotState { Null, Unload, Load, Aim, Fire }
+    private      SlingshotState slingshotState;
+
+    private bool MachineOn;
+
     private Rigidbody2D rb2d;
 
     [SerializeField]
@@ -59,4 +64,17 @@ public class Slingshot : MonoBehaviour
         }
     }
 
+    private IEnumerator SlingshotStateMachine()
+    {
+        while (MachineOn)
+        {
+            switch (slingshotState)
+            {
+                case SlingshotState.Unload: yield return StartCoroutine(Unload()); break;
+                case SlingshotState.Aim:    yield return StartCoroutine(Aim());    break;
+                case SlingshotState.Load:   yield return StartCoroutine(Load());   break;
+                case SlingshotState.Fire:   yield return StartCoroutine(Fire());   break;
+            }
+        }
+    }
 }
