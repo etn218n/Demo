@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3521795071542743155}
   - component: {fileID: 3521795071542743148}
   - component: {fileID: 3521795071542743149}
-  - component: {fileID: 1396201842}
   - component: {fileID: 1396201843}
   - component: {fileID: 1396201838}
   m_Layer: 0
@@ -121,26 +120,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!231 &1396201842
-SpringJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3521795071542743150}
-  m_Enabled: 1
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_AutoConfigureConnectedAnchor: 0
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 0, y: 0}
-  m_AutoConfigureDistance: 0
-  m_Distance: 0.005
-  m_DampingRatio: 0
-  m_Frequency: 1
 --- !u!114 &1396201843
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +132,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f8f7e9d4dc803b41bc5ba1b0ef3a7cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aimPoint: {fileID: 0}
 --- !u!95 &1396201838
 Animator:
   serializedVersion: 3

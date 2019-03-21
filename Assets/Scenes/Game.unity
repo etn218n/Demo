@@ -322,6 +322,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 620592370}
   m_CullTransparentMesh: 0
+--- !u!4 &696429843 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1119869037988118114, guid: ba2e9e2e396fe97439baaf6ee5181f20,
+    type: 3}
+  m_PrefabInstance: {fileID: 1119869037559977130}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &884068334
 GameObject:
   m_ObjectHideFlags: 0
@@ -455,10 +461,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1396201842, guid: 71caac0775a6e3b4abe6c83453086c39, type: 3}
-      propertyPath: m_ConnectedRigidBody
+    - target: {fileID: 1396201843, guid: 71caac0775a6e3b4abe6c83453086c39, type: 3}
+      propertyPath: aimPoint
       value: 
-      objectReference: {fileID: 1048963782}
+      objectReference: {fileID: 696429843}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71caac0775a6e3b4abe6c83453086c39, type: 3}
 --- !u!1 &1037521642
@@ -589,12 +595,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1037521642}
   m_CullTransparentMesh: 0
---- !u!50 &1048963782 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 1119869037988118124, guid: ba2e9e2e396fe97439baaf6ee5181f20,
-    type: 3}
-  m_PrefabInstance: {fileID: 1119869037559977130}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1137917955
 GameObject:
   m_ObjectHideFlags: 0
@@ -1458,16 +1458,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1119869037988118114, guid: ba2e9e2e396fe97439baaf6ee5181f20,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.244
-      objectReference: {fileID: 0}
-    - target: {fileID: 1119869037988118114, guid: ba2e9e2e396fe97439baaf6ee5181f20,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0.197
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba2e9e2e396fe97439baaf6ee5181f20, type: 3}

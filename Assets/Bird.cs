@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Bird : MonoBehaviour
@@ -15,8 +14,9 @@ public class Bird : MonoBehaviour
 
     private Rigidbody2D rb2d;
     private Collider2D collider2d;
-    private SpringJoint2D springJoint2d;
     private Animator anim;
+
+    [SerializeField]
     private Transform aimPoint;
 
     private void Awake()
@@ -24,9 +24,6 @@ public class Bird : MonoBehaviour
         rb2d          = GetComponent<Rigidbody2D>();
         anim          = GetComponent<Animator>();
         collider2d    = GetComponent<Collider2D>();
-        springJoint2d = GetComponent<SpringJoint2D>();
-
-        aimPoint = springJoint2d.connectedBody.transform;
     }
 
     private void Start()
@@ -45,7 +42,6 @@ public class Bird : MonoBehaviour
         MouseReleased = false;
 
         rb2d.gravityScale = 0f;
-        springJoint2d.enabled = false;
 
         gameObject.transform.right = aimPoint.position - this.gameObject.transform.position;
 
@@ -78,19 +74,15 @@ public class Bird : MonoBehaviour
         }
 
         //Exit State
-        springJoint2d.enabled = true;
     }
 
     private IEnumerator Launch()
     {
         rb2d.gravityScale = 1f;
 
-        rb2d.constraints  = RigidbodyConstraints2D.FreezeRotation;
+        rb2d.velocity = (aimPoint.position - gameObject.transform.position) * 10f;
 
         yield return new WaitForSeconds(0.2f);
-
-        rb2d.constraints = RigidbodyConstraints2D.None;
-        springJoint2d.breakForce = 20f;
 
         SetAnimation(BirdState.Launch);
 
