@@ -4,8 +4,7 @@ using UnityEngine;
 public class Bird : MonoBehaviour
 {
     private enum BirdState { Null, Idle, OnSlingshot, Aim, Fly, Disappear }
-
-    private BirdState birdState;
+    private      BirdState birdState;
 
     private bool MachineOn;
 
@@ -17,9 +16,6 @@ public class Bird : MonoBehaviour
     public Collider2D collider2d { get; private set; }
 
     private Animator anim;
-
-    [SerializeField]
-    private Transform aimPoint;
 
     [Range(0, 20)]
     public float flySpeed = 10;
@@ -55,7 +51,7 @@ public class Bird : MonoBehaviour
     {
         SetAnimation(BirdState.OnSlingshot);
 
-        // Avoid OnMouseDrag conflict with Slingshot's Collider Aim
+        // Avoid OnMouseDrag conflict with Slingshot's Collider
         collider2d.enabled = false;
 
         rb2d.gravityScale = 0f;
@@ -89,8 +85,6 @@ public class Bird : MonoBehaviour
     {
         rb2d.gravityScale = 1f;
 
-        rb2d.velocity = (aimPoint.position - gameObject.transform.position) * flySpeed;
-
         yield return new WaitForSeconds(0.2f);
 
         SetAnimation(BirdState.Fly);
@@ -111,9 +105,6 @@ public class Bird : MonoBehaviour
 
     private IEnumerator Disappear()
     {
-        collider2d.enabled = false;
-        rb2d.gravityScale = 0f;
-
         SetAnimation(BirdState.Disappear);
 
         // wait for Disappear Animation to complete

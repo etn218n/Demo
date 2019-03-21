@@ -135,7 +135,6 @@ MonoBehaviour:
   LoadintoSlingshot: 0
   MouseDragged: 0
   MouseReleased: 0
-  aimPoint: {fileID: 0}
   flySpeed: 10
 --- !u!95 &1396201838
 Animator:

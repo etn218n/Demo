@@ -25,6 +25,7 @@ public class Slingshot : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
         {
             birdObject.transform.position = aimPoint.position;
+
             bird.LoadintoSlingshot = true;
             bird.rb2d.gravityScale = 0f;
         }
@@ -32,18 +33,30 @@ public class Slingshot : MonoBehaviour
 
     private void OnMouseDrag()
     {
-        Vector2 dragPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (birdObject != null && bird.LoadintoSlingshot == true)
+        {
+            Vector2 dragPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-        rb2d.MovePosition(dragPos);
+            rb2d.MovePosition(dragPos);
 
-        bird.transform.position = gameObject.transform.position;
+            bird.transform.position = gameObject.transform.position;
 
-        bird.MouseDragged = true;
+            // Bird looks at the Aim Point
+            birdObject.transform.right = aimPoint.position - birdObject.transform.position;
+
+            bird.MouseDragged = true;
+        }
     }
 
     private void OnMouseUp()
     {
-        bird.MouseReleased = true;
+        if (birdObject != null && bird.MouseDragged == true)
+        {
+            bird.MouseReleased = true;
+            birdObject = null;
+
+            bird.rb2d.velocity = (aimPoint.position - gameObject.transform.position) * bird.flySpeed;
+        }
     }
 
 }

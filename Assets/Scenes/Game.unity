@@ -179,10 +179,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1396201843, guid: 71caac0775a6e3b4abe6c83453086c39, type: 3}
-      propertyPath: aimPoint
-      value: 
-      objectReference: {fileID: 1195721348}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71caac0775a6e3b4abe6c83453086c39, type: 3}
 --- !u!1 &519420028
@@ -773,12 +769,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1179807804}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &1195721348 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1119869037988118114, guid: ba2e9e2e396fe97439baaf6ee5181f20,
-    type: 3}
-  m_PrefabInstance: {fileID: 1023575347}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1254617979
 GameObject:
   m_ObjectHideFlags: 0
@@ -1276,11 +1266,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pig (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 2237496440073988323, guid: f1e01ba6698d0f9408dae65b597e1908,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2237496440073988327, guid: f1e01ba6698d0f9408dae65b597e1908,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1336,11 +1321,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2237496440073988324, guid: f1e01ba6698d0f9408dae65b597e1908,
-        type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 6200000, guid: 5f8b88e14ffa34a4c87a7d6422e6c43f, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f1e01ba6698d0f9408dae65b597e1908, type: 3}
 --- !u!1 &2006498481
