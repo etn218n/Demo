@@ -8,17 +8,16 @@ public class Bird : MonoBehaviour
 
     private bool MachineOn;
 
-    public bool LoadintoSlingshot;
-    public bool MouseDragged;
-    public bool MouseReleased;
+    [HideInInspector] public bool LoadintoSlingshot;
+    [HideInInspector] public bool MouseDragged;
+    [HideInInspector] public bool MouseReleased;
 
     public Rigidbody2D rb2d      { get; private set; }
     public Collider2D collider2d { get; private set; }
 
     private Animator anim;
 
-    [Range(0, 20)]
-    public float flySpeed = 10;
+    [Range(0, 20)] public float flySpeed = 10;
 
     private void Awake()
     {
