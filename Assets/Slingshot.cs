@@ -43,7 +43,7 @@ public class Slingshot : MonoBehaviour
     }
 
     private void OnMouseDrag() { MouseDragged  = true; }
-    private void OnMouseUp()   { MouseReleased = true; }
+    private void OnMouseUp()   { MouseReleased = true; MouseDragged = false; }
 
     private IEnumerator Idle()
     {
@@ -59,14 +59,16 @@ public class Slingshot : MonoBehaviour
     {
         MouseDragged = false;
 
-        bird.LoadintoSlingshot = true;
-
-        bird.gameObject.transform.position = loadPoint.transform.position;
-
         // Avoid OnMouseDrag conflict with Slingshot's Collider
         bird.collider2d.enabled = false;
 
-        bird.rb2d.gravityScale  = 0f;
+        bird.rb2d.gravityScale = 0f;
+        bird.rb2d.velocity     = Vector2.zero;
+
+        bird.LoadintoSlingshot = true;
+
+        bird.gameObject.transform.position = loadPoint.transform.position;
+       
 
         while (true)
         {
@@ -107,13 +109,15 @@ public class Slingshot : MonoBehaviour
 
     private IEnumerator Fire()
     {
+        bird.collider2d.enabled = true;
+
+        bird.rb2d.gravityScale = 1f;
+
         bird.rb2d.velocity = (aimPoint.position - gameObject.transform.position) * bird.flySpeed;
 
         bird.MouseReleased = true;
 
-        bird.collider2d.enabled = true;
-
-        bird.rb2d.gravityScale  = 1f;
+        BirdLoaded = false;
 
         slingshotState = SlingshotState.Idle;
 
