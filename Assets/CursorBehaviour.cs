@@ -22,8 +22,11 @@ public class CursorBehaviour : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            anim.SetTrigger("Clicked");
-            //anim.ResetTrigger("Clicked");
+            anim.SetBool("Clicked", true);
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            anim.SetBool("Clicked", false);
         }
 
     }
