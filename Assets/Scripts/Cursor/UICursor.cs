@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[CreateAssetMenu(fileName = "UICursor", menuName = "Cursor/UICursor", order = 1)]
+[CreateAssetMenu(fileName = "UICursor", menuName = "Cursor/UICursor")]
 public class UICursor : CustomCursor
 {
     [SerializeField] protected Sprite defaultSprite;
