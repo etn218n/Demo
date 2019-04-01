@@ -106,7 +106,7 @@ public class Bird : MonoBehaviour
     {
         while (MachineOn)
         {
-            Debug.Log("Bird: " + birdState);
+            //Debug.Log("Bird: " + birdState);
             switch (birdState)
             {
                 case BirdState.Idle:        yield return StartCoroutine(Idle());        break;

@@ -1055,7 +1055,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ade359e8a774b904c8e3d2c847665120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 0.2, y: -0.3}
+  defaultCursor: {fileID: 21300002, guid: d42809550899ede488ce82ce7923c6ad, type: 3}
+  clickCursor: {fileID: 21300004, guid: d42809550899ede488ce82ce7923c6ad, type: 3}
+  holdCursor: {fileID: 21300006, guid: d42809550899ede488ce82ce7923c6ad, type: 3}
+  UICursor: {fileID: 21300000, guid: d42809550899ede488ce82ce7923c6ad, type: 3}
 --- !u!212 &1426346157
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1093,7 +1096,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300000, guid: d42809550899ede488ce82ce7923c6ad, type: 3}
+  m_Sprite: {fileID: 21300002, guid: d42809550899ede488ce82ce7923c6ad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1126,7 +1129,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1426346155}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: 3e5124b2a5be0f84fb9a61582492b366, type: 2}
   m_CullingMode: 0
@@ -1448,6 +1451,7 @@ GameObject:
   - component: {fileID: 2006498485}
   - component: {fileID: 2006498484}
   - component: {fileID: 2006498483}
+  - component: {fileID: 2006498486}
   m_Layer: 5
   m_Name: ReplayButton
   m_TagString: Untagged
@@ -1564,6 +1568,54 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2006498481}
   m_CullTransparentMesh: 0
+--- !u!114 &2006498486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2006498481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1426346156}
+          m_MethodName: ToUICursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1426346156}
+          m_MethodName: ToGameCursor
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1001 &1839029177761493699
 PrefabInstance:
   m_ObjectHideFlags: 0

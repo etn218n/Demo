@@ -128,7 +128,7 @@ public class Slingshot : MonoBehaviour
     {
         while (MachineOn)
         {
-            Debug.Log("Slingshot: " + slingshotState);
+            //Debug.Log("Slingshot: " + slingshotState);
             switch (slingshotState)
             {
                 case SlingshotState.Idle: yield return StartCoroutine(Idle()); break;
