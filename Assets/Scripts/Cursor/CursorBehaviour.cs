@@ -4,41 +4,25 @@ using System.Collections;
 public class CursorBehaviour : MonoBehaviour
 {
     private SpriteRenderer sprRenderer;
+    private CustomCursor currentCursor;
 
     private float clickStartTime;
 
-    [SerializeField] private Sprite defaultCursor;
-    [SerializeField] private Sprite clickCursor;
-    [SerializeField] private Sprite holdCursor;
-    [SerializeField] private Sprite UICursor;
-
-    public CustomCursor customCursor;
-
-    public CustomCursor playCursor;
-    public CustomCursor uiCursor;
-
-    public void ToUICursor()
-    {
-        customCursor = uiCursor;
-        customCursor.Release();
-    }
-
-    public void ToGameCursor()
-    {
-        customCursor = playCursor;
-        customCursor.Release();
-    }
+    [SerializeField] private CustomCursor[] customCursors;
 
     private void Awake()
     {
         Cursor.visible = false;
 
         sprRenderer = GetComponent<SpriteRenderer>();
+        
+        foreach (var cursor in customCursors)
+        {
+            cursor.sprRenderer = sprRenderer;
+        }
 
-        playCursor = new PlayCursor(sprRenderer, defaultCursor, defaultCursor, holdCursor);
-        uiCursor = new UICursor(sprRenderer, UICursor, clickCursor, UICursor);
-
-        customCursor = playCursor;
+        currentCursor = customCursors[0];
+        currentCursor.Release();
     }
 
     private void Update()
@@ -55,13 +39,13 @@ public class CursorBehaviour : MonoBehaviour
         {
             float clickTime = Time.time - clickStartTime;
 
-            if (clickTime > 0.15f) customCursor.Hold();
+            if (clickTime > 0.15f) currentCursor.Hold();
         }
         else if (Input.GetMouseButtonUp(0))
         {
             float clickTime = Time.time - clickStartTime;
 
-            if (clickTime < 0.15f) customCursor.Click();
+            if (clickTime < 0.15f) currentCursor.Click();
 
             StartCoroutine(ReleaseMouse());
         }
@@ -71,6 +55,22 @@ public class CursorBehaviour : MonoBehaviour
     {
         yield return new WaitForSeconds(0.1f);
 
-        customCursor.Release();
+        currentCursor.Release();
     }
+
+    public void SetCursor(CustomCursor cursor)
+    {
+        currentCursor = cursor;
+        currentCursor.Release();
+    }
+}
+
+public abstract class CustomCursor : ScriptableObject
+{
+    [HideInInspector] public SpriteRenderer sprRenderer;
+    [HideInInspector] public Animator anim;
+
+    public virtual void Click()   { }
+    public virtual void Hold()    { }
+    public virtual void Release() { }
 }

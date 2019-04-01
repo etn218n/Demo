@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: DefaultCursor
+  m_EditorClassIdentifier: Assembly-CSharp::DefaultCursor
+  sprRenderer: {fileID: 0}
+  anim: {fileID: 0}
+  defaultSprite: {fileID: 21300002, guid: d42809550899ede488ce82ce7923c6ad, type: 3}
+  holdSprite: {fileID: 21300006, guid: d42809550899ede488ce82ce7923c6ad, type: 3}

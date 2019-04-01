@@ -348,6 +348,7 @@ GameObject:
   - component: {fileID: 620592374}
   - component: {fileID: 620592373}
   - component: {fileID: 620592372}
+  - component: {fileID: 620592375}
   m_Layer: 5
   m_Name: BacktoMainmenuButton
   m_TagString: Untagged
@@ -464,6 +465,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 620592370}
   m_CullTransparentMesh: 0
+--- !u!114 &620592375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 620592370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1426346156}
+          m_MethodName: SetCursor
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: d2720d2ae2c3ba1408e383c5d84543b1,
+              type: 2}
+            m_ObjectArgumentAssemblyTypeName: CustomCursor, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1426346156}
+          m_MethodName: SetCursor
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: 33b09c104e1ac504498f4a11e7768846,
+              type: 2}
+            m_ObjectArgumentAssemblyTypeName: CustomCursor, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &884068334
 GameObject:
   m_ObjectHideFlags: 0
@@ -542,6 +593,7 @@ GameObject:
   - component: {fileID: 1037521646}
   - component: {fileID: 1037521645}
   - component: {fileID: 1037521644}
+  - component: {fileID: 1037521647}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -658,6 +710,56 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1037521642}
   m_CullTransparentMesh: 0
+--- !u!114 &1037521647
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037521642}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1862395651, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1426346156}
+          m_MethodName: SetCursor
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: d2720d2ae2c3ba1408e383c5d84543b1,
+              type: 2}
+            m_ObjectArgumentAssemblyTypeName: CustomCursor, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1426346156}
+          m_MethodName: SetCursor
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 11400000, guid: 33b09c104e1ac504498f4a11e7768846,
+              type: 2}
+            m_ObjectArgumentAssemblyTypeName: CustomCursor, Assembly-CSharp
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+      m_TypeName: UnityEngine.EventSystems.EventTrigger+TriggerEvent, UnityEngine.UI,
+        Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  delegates: []
 --- !u!1 &1137917955
 GameObject:
   m_ObjectHideFlags: 0
@@ -1035,7 +1137,6 @@ GameObject:
   - component: {fileID: 1426346158}
   - component: {fileID: 1426346157}
   - component: {fileID: 1426346156}
-  - component: {fileID: 1426346159}
   m_Layer: 0
   m_Name: Cursor
   m_TagString: Untagged
@@ -1055,10 +1156,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ade359e8a774b904c8e3d2c847665120, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultCursor: {fileID: 21300002, guid: d42809550899ede488ce82ce7923c6ad, type: 3}
-  clickCursor: {fileID: 21300004, guid: d42809550899ede488ce82ce7923c6ad, type: 3}
-  holdCursor: {fileID: 21300006, guid: d42809550899ede488ce82ce7923c6ad, type: 3}
-  UICursor: {fileID: 21300000, guid: d42809550899ede488ce82ce7923c6ad, type: 3}
+  customCursors:
+  - {fileID: 11400000, guid: 33b09c104e1ac504498f4a11e7768846, type: 2}
+  - {fileID: 11400000, guid: d2720d2ae2c3ba1408e383c5d84543b1, type: 2}
 --- !u!212 &1426346157
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1096,7 +1196,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 5
-  m_Sprite: {fileID: 21300002, guid: d42809550899ede488ce82ce7923c6ad, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d42809550899ede488ce82ce7923c6ad, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1121,25 +1221,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &1426346159
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1426346155}
-  m_Enabled: 0
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3e5124b2a5be0f84fb9a61582492b366, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1644482383 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3521795071542743150, guid: 71caac0775a6e3b4abe6c83453086c39,
@@ -1586,11 +1667,12 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1426346156}
-          m_MethodName: ToUICursor
-          m_Mode: 1
+          m_MethodName: SetCursor
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 11400000, guid: d2720d2ae2c3ba1408e383c5d84543b1,
+              type: 2}
+            m_ObjectArgumentAssemblyTypeName: CustomCursor, Assembly-CSharp
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
@@ -1603,11 +1685,12 @@ MonoBehaviour:
       m_PersistentCalls:
         m_Calls:
         - m_Target: {fileID: 1426346156}
-          m_MethodName: ToGameCursor
-          m_Mode: 1
+          m_MethodName: SetCursor
+          m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_ObjectArgument: {fileID: 11400000, guid: 33b09c104e1ac504498f4a11e7768846,
+              type: 2}
+            m_ObjectArgumentAssemblyTypeName: CustomCursor, Assembly-CSharp
             m_IntArgument: 0
             m_FloatArgument: 0
             m_StringArgument: 
