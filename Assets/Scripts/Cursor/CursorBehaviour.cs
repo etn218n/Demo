@@ -1,28 +1,30 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(SpriteRenderer))]
 public class CursorBehaviour : MonoBehaviour
 {
+    [SerializeField] private CustomCursor[] customCursors;
+
     private SpriteRenderer sprRenderer;
     private CustomCursor currentCursor;
 
     private float clickStartTime;
-
-    [SerializeField] private CustomCursor[] customCursors;
 
     private void Awake()
     {
         Cursor.visible = false;
 
         sprRenderer = GetComponent<SpriteRenderer>();
-        
+
+        sprRenderer.sortingOrder = 5;
+
         foreach (var cursor in customCursors)
         {
             cursor.sprRenderer = sprRenderer;
         }
 
-        currentCursor = customCursors[0];
-        currentCursor.Release();
+        SetCursor(customCursors[0]);
     }
 
     private void Update()
@@ -63,14 +65,4 @@ public class CursorBehaviour : MonoBehaviour
         currentCursor = cursor;
         currentCursor.Release();
     }
-}
-
-public abstract class CustomCursor : ScriptableObject
-{
-    [HideInInspector] public SpriteRenderer sprRenderer;
-    [HideInInspector] public Animator anim;
-
-    public virtual void Click()   { }
-    public virtual void Hold()    { }
-    public virtual void Release() { }
 }

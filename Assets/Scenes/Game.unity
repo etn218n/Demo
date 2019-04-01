@@ -486,7 +486,7 @@ MonoBehaviour:
           m_MethodName: SetCursor
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: d2720d2ae2c3ba1408e383c5d84543b1,
+            m_ObjectArgument: {fileID: 11400000, guid: f1650f1b5e0041f4bb64e10385cf3e71,
               type: 2}
             m_ObjectArgumentAssemblyTypeName: CustomCursor, Assembly-CSharp
             m_IntArgument: 0
@@ -504,7 +504,7 @@ MonoBehaviour:
           m_MethodName: SetCursor
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: 33b09c104e1ac504498f4a11e7768846,
+            m_ObjectArgument: {fileID: 11400000, guid: 22bdf607e4a1c9d499a63f6761d9a626,
               type: 2}
             m_ObjectArgumentAssemblyTypeName: CustomCursor, Assembly-CSharp
             m_IntArgument: 0
@@ -731,7 +731,7 @@ MonoBehaviour:
           m_MethodName: SetCursor
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: d2720d2ae2c3ba1408e383c5d84543b1,
+            m_ObjectArgument: {fileID: 11400000, guid: f1650f1b5e0041f4bb64e10385cf3e71,
               type: 2}
             m_ObjectArgumentAssemblyTypeName: CustomCursor, Assembly-CSharp
             m_IntArgument: 0
@@ -749,7 +749,7 @@ MonoBehaviour:
           m_MethodName: SetCursor
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: 33b09c104e1ac504498f4a11e7768846,
+            m_ObjectArgument: {fileID: 11400000, guid: 22bdf607e4a1c9d499a63f6761d9a626,
               type: 2}
             m_ObjectArgumentAssemblyTypeName: CustomCursor, Assembly-CSharp
             m_IntArgument: 0
@@ -1157,8 +1157,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   customCursors:
-  - {fileID: 11400000, guid: 33b09c104e1ac504498f4a11e7768846, type: 2}
-  - {fileID: 11400000, guid: d2720d2ae2c3ba1408e383c5d84543b1, type: 2}
+  - {fileID: 11400000, guid: 22bdf607e4a1c9d499a63f6761d9a626, type: 2}
+  - {fileID: 11400000, guid: f1650f1b5e0041f4bb64e10385cf3e71, type: 2}
 --- !u!212 &1426346157
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1215,8 +1215,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1426346155}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -3.3861234, y: -0.75411683, z: 0.06686401}
-  m_LocalScale: {x: 0.9992571, y: 0.9992571, z: 0.9992571}
+  m_LocalPosition: {x: -3, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 11
@@ -1670,7 +1670,7 @@ MonoBehaviour:
           m_MethodName: SetCursor
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: d2720d2ae2c3ba1408e383c5d84543b1,
+            m_ObjectArgument: {fileID: 11400000, guid: f1650f1b5e0041f4bb64e10385cf3e71,
               type: 2}
             m_ObjectArgumentAssemblyTypeName: CustomCursor, Assembly-CSharp
             m_IntArgument: 0
@@ -1688,7 +1688,7 @@ MonoBehaviour:
           m_MethodName: SetCursor
           m_Mode: 2
           m_Arguments:
-            m_ObjectArgument: {fileID: 11400000, guid: 33b09c104e1ac504498f4a11e7768846,
+            m_ObjectArgument: {fileID: 11400000, guid: 22bdf607e4a1c9d499a63f6761d9a626,
               type: 2}
             m_ObjectArgumentAssemblyTypeName: CustomCursor, Assembly-CSharp
             m_IntArgument: 0
