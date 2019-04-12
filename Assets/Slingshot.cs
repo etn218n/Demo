@@ -4,39 +4,31 @@ using UnityEngine;
 public class Slingshot : MonoBehaviour
 {
     private enum SlingshotState { Null, Idle, Load, Aim, Fire }
-    private      SlingshotState slingshotState;
+    private      SlingshotState slingshotState = SlingshotState.Idle;
 
     private bool MachineOn;
 
     private Rigidbody2D rb2d;
 
-    [SerializeField]
-    private GameObject birdObject;
-    private Bird bird;
+    [SerializeField] private Bird bird;
 
     [SerializeField] private Transform aimPoint;
     [SerializeField] private Transform loadPoint;
+
+    [SerializeField] private float stringRadius = 0.15f;
 
     [HideInInspector] public bool MouseDragged;
     [HideInInspector] public bool MouseReleased;
     [HideInInspector] public bool BirdLoaded;
 
-    public float stringRadius;
-
     private void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
-
-        bird = birdObject.GetComponent<Bird>();
-
-        stringRadius = 0.15f;
     }
 
     private void Start()
     {
-        MachineOn = true;
-        slingshotState = SlingshotState.Idle;
-
+        MachineOn  = true;
         BirdLoaded = true;
 
         StartCoroutine(SlingshotStateMachine());
@@ -62,13 +54,13 @@ public class Slingshot : MonoBehaviour
         // Avoid OnMouseDrag conflict with Slingshot's Collider
         bird.collider2d.enabled = false;
 
+        // Make sure the Bird stationary on Slingshot
         bird.rb2d.gravityScale = 0f;
         bird.rb2d.velocity     = Vector2.zero;
 
-        bird.LoadintoSlingshot = true;
+        bird.OnSlingshot();
 
-        bird.gameObject.transform.position = loadPoint.transform.position;
-       
+        bird.transform.position = loadPoint.transform.position;
 
         while (true)
         {
@@ -76,30 +68,30 @@ public class Slingshot : MonoBehaviour
 
             yield return null;
         }
-
-        bird.MouseDragged = true;
     }
 
     private IEnumerator Aim()
     {
         MouseReleased = false;
 
+        bird.ReadyToFly();
+
         while (true)
         {
             Vector3 dragPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             dragPos.z = 0f;
 
-            if (Vector3.Distance(dragPos, transform.position) > stringRadius)
+            if (Vector3.Distance(dragPos, this.transform.position) > stringRadius)
             {
-                dragPos = (dragPos - transform.position).normalized * stringRadius + transform.position;
+                dragPos = (dragPos - this.transform.position).normalized * stringRadius + this.transform.position;
             }
 
             rb2d.MovePosition(dragPos);
 
-            bird.gameObject.transform.position = gameObject.transform.position;
+            bird.transform.position = this.transform.position;
 
             // Bird looks at the Aim Point
-            bird.gameObject.transform.right = aimPoint.position - birdObject.transform.position;
+            bird.transform.right = aimPoint.position - bird.transform.position;
 
             if (MouseReleased) { slingshotState = SlingshotState.Fire; break; }
 
@@ -111,11 +103,11 @@ public class Slingshot : MonoBehaviour
     {
         bird.collider2d.enabled = true;
 
-        bird.rb2d.gravityScale = 1f;
+        bird.rb2d.gravityScale  = 1f;
 
-        bird.rb2d.velocity = (aimPoint.position - gameObject.transform.position) * bird.flySpeed;
+        bird.rb2d.velocity = (aimPoint.position - this.transform.position) * 10;
 
-        bird.MouseReleased = true;
+        bird.Fly();
 
         BirdLoaded = false;
 

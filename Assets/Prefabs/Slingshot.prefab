@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 1645708229}
   - component: {fileID: 1940013438}
   m_Layer: 0
-  m_Name: String
+  m_Name: Mechanics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -309,13 +309,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f90f05c655f16174aafa0f6abf59cb8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  birdObject: {fileID: 0}
+  bird: {fileID: 0}
   aimPoint: {fileID: 1119869037988118114}
   loadPoint: {fileID: 844295287}
+  stringRadius: 0.15
   MouseDragged: 0
   MouseReleased: 0
   BirdLoaded: 0
-  stringRadius: 0
 --- !u!114 &1940013438
 MonoBehaviour:
   m_ObjectHideFlags: 0
