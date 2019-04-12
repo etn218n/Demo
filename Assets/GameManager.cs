@@ -7,8 +7,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
 
-    private AudioManager audioManager;
-    private LevelManager levelManager;
 
     void Awake()
     {
@@ -27,9 +25,7 @@ public class GameManager : MonoBehaviour
 
     private void Init()
     {
-        audioManager = GetComponent<AudioManager>();
-        levelManager = GetComponent<LevelManager>();
 
-        SceneManager.activeSceneChanged += levelManager.ScanGameobjects;
+        //SceneManager.activeSceneChanged += levelManager.ScanGameobjects;
     }
 }

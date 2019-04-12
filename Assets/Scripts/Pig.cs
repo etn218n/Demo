@@ -1,11 +1,13 @@
 ﻿using System.Collections;
+using System;
 using UnityEngine;
 
 public delegate void PigEvent();
 
 public class Pig : MonoBehaviour
 {
-    public event PigEvent Disappeared;
+    //public event PigEvent Disappeared;
+    public EventHandler Disappeared;
 
     private Animator anim;
     private Collider2D collider2d;
@@ -33,7 +35,7 @@ public class Pig : MonoBehaviour
 
         yield return new WaitForSeconds(0.3f);
 
-        Disappeared?.Invoke();
+        Disappeared?.Invoke(this, null);
 
         Destroy(this.gameObject);
     }
