@@ -913,8 +913,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2028892115}
-  - component: {fileID: 2028892114}
   - component: {fileID: 2028892113}
+  - component: {fileID: 2028892114}
+  - component: {fileID: 2028892116}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -946,7 +947,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 049c38f57e3e62f42aa2d97d538153ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainTheme: {fileID: 0}
+  mainTheme: {fileID: 8300000, guid: 90927448116b9d641beace9955f9f6e0, type: 3}
 --- !u!4 &2028892115
 Transform:
   m_ObjectHideFlags: 0
@@ -961,6 +962,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2028892116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2028892112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d528b9b0ff697ce449edb49e7640b298, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2048088233
 GameObject:
   m_ObjectHideFlags: 0

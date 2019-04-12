@@ -1,8 +1,12 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+public delegate void PigEvent();
+
 public class Pig : MonoBehaviour
 {
+    public event PigEvent Disappeared;
+
     private Animator anim;
     private Collider2D collider2d;
     private Rigidbody2D rb2d;
@@ -28,6 +32,8 @@ public class Pig : MonoBehaviour
         anim.SetBool("Disappear", true);
 
         yield return new WaitForSeconds(0.3f);
+
+        Disappeared?.Invoke();
 
         Destroy(this.gameObject);
     }

@@ -53,6 +53,8 @@ public class Red : Bird
         // wait for Disappear Animation to complete
         yield return new WaitForSeconds(0.2f);
 
+        Disappear();
+
         Destroy(this.gameObject);
     }
 

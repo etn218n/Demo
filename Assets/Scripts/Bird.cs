@@ -2,7 +2,7 @@
 
 public enum BirdState { Null, Idle, OnSlingshot, Ready, Flying, Disappearing }
 
-public delegate void BirdStateChange();
+public delegate void BirdEvent();
 
 [RequireComponent(typeof(Animator), typeof(Rigidbody2D), typeof(Collider2D))]
 public class Bird : MonoBehaviour
@@ -13,7 +13,8 @@ public class Bird : MonoBehaviour
     public Rigidbody2D rb2d       { get; private set; }
     public Collider2D  collider2d { get; private set; }
 
-    public event BirdStateChange StateChanged;
+    public event BirdEvent StateChanged;
+    public event BirdEvent Disappeared;
 
     public BirdState State
     {
@@ -32,6 +33,11 @@ public class Bird : MonoBehaviour
         anim       = GetComponent<Animator>();
         rb2d       = GetComponent<Rigidbody2D>();
         collider2d = GetComponent<Collider2D>();  
+    }
+
+    protected void Disappear()
+    {
+        Disappeared?.Invoke();
     }
 
     public virtual void Idle()           { }
