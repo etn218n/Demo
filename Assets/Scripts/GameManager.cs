@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+// TODO: Will be implemented later
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
 
+    private AudioManager audioManager;
 
     void Awake()
     {
@@ -25,7 +27,5 @@ public class GameManager : MonoBehaviour
 
     private void Init()
     {
-
-        //SceneManager.activeSceneChanged += levelManager.ScanGameobjects;
     }
 }

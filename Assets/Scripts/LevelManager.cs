@@ -24,7 +24,7 @@ public class LevelManager : MonoBehaviour
 
         foreach (var bird in birdArray)
         {
-            bird.Disappeared += () => Debug.Log("Bird Dies");
+            //bird.Disappeared += () => Debug.Log("Bird Dies");
             birdList.Add(bird);
         }
 
