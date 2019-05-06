@@ -1,8 +1,7 @@
 ﻿using UnityEngine;
+using System;
 
 public enum BirdState { Null, Idle, OnSlingshot, Ready, Flying, Disappearing }
-
-public delegate void BirdEvent();
 
 [RequireComponent(typeof(Animator), typeof(Rigidbody2D), typeof(Collider2D))]
 public class Bird : MonoBehaviour
@@ -13,8 +12,8 @@ public class Bird : MonoBehaviour
     public Rigidbody2D rb2d       { get; private set; }
     public Collider2D  collider2d { get; private set; }
 
-    public event BirdEvent StateChanged;
-    public event BirdEvent Disappeared;
+    public EventHandler OnStateChanged;
+    public EventHandler OnDisappeared;
 
     public BirdState State
     {
@@ -24,7 +23,7 @@ public class Bird : MonoBehaviour
         {
             this.state = value;
 
-            StateChanged?.Invoke();
+            OnStateChanged?.Invoke(this, null);  
         }
     }
 
@@ -37,7 +36,7 @@ public class Bird : MonoBehaviour
 
     protected void Disappear()
     {
-        Disappeared?.Invoke();
+        OnDisappeared?.Invoke(this, null);
     }
 
     public virtual void Idle()           { }

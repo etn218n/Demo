@@ -15,7 +15,6 @@ public class GameManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            Init();
         }
         else if (instance != this)
         {
@@ -23,9 +22,5 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
-    }
-
-    private void Init()
-    {
     }
 }

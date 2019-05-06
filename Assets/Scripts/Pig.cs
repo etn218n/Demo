@@ -6,8 +6,7 @@ public delegate void PigEvent();
 
 public class Pig : MonoBehaviour
 {
-    //public event PigEvent Disappeared;
-    public EventHandler Disappeared;
+    public EventHandler OnDisappeared;
 
     private Animator anim;
     private Collider2D collider2d;
@@ -35,7 +34,7 @@ public class Pig : MonoBehaviour
 
         yield return new WaitForSeconds(0.3f);
 
-        Disappeared?.Invoke(this, null);
+        OnDisappeared?.Invoke(this, null);
 
         Destroy(this.gameObject);
     }

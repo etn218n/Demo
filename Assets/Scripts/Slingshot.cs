@@ -1,6 +1,12 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using System;
 using UnityEngine;
 
+// Experiment with state machine using Coroutine
+// This class can be simpler with normal implementation
+// but is kept this way to see if this kind of state machine
+// can be helpful in future
 public class Slingshot : MonoBehaviour
 {
     private enum SlingshotState { Null, Idle, Load, Aim, Fire }
@@ -10,7 +16,7 @@ public class Slingshot : MonoBehaviour
 
     private Rigidbody2D rb2d;
 
-    [SerializeField] private Bird bird;
+    [SerializeField] private Bird[] birds;
 
     [SerializeField] private Transform aimPoint;
     [SerializeField] private Transform loadPoint;
@@ -19,7 +25,9 @@ public class Slingshot : MonoBehaviour
 
     [HideInInspector] public bool MouseDragged;
     [HideInInspector] public bool MouseReleased;
-    [HideInInspector] public bool BirdLoaded;
+
+    private Queue<Bird> birdQueue = new Queue<Bird>();
+    private Bird loadedBird;
 
     private void Awake()
     {
@@ -28,8 +36,14 @@ public class Slingshot : MonoBehaviour
 
     private void Start()
     {
-        MachineOn  = true;
-        BirdLoaded = true;
+        foreach (Bird bird in birds)
+        {
+            birdQueue.Enqueue(bird);
+        }
+
+        MachineOn = true;
+
+        loadedBird = LoadNextBird();
 
         StartCoroutine(SlingshotStateMachine());
     }
@@ -41,7 +55,7 @@ public class Slingshot : MonoBehaviour
     {
         while (true)
         {
-            if (BirdLoaded) { slingshotState = SlingshotState.Load; break; }
+            if (loadedBird != null) { slingshotState = SlingshotState.Load; break; }
 
             yield return null;
         }
@@ -52,15 +66,24 @@ public class Slingshot : MonoBehaviour
         MouseDragged = false;
 
         // Avoid OnMouseDrag conflict with Slingshot's Collider
-        bird.collider2d.enabled = false;
+        loadedBird.collider2d.enabled = false;
 
         // Make sure the Bird stationary on Slingshot
-        bird.rb2d.gravityScale = 0f;
-        bird.rb2d.velocity     = Vector2.zero;
+        loadedBird.rb2d.gravityScale = 0f;
+        loadedBird.rb2d.velocity     = Vector2.zero;
 
-        bird.OnSlingshot();
+        loadedBird.OnSlingshot();
 
-        bird.transform.position = loadPoint.transform.position;
+        //loadedBird.transform.position = loadPoint.transform.position;
+
+        while (Vector3.Distance(loadedBird.transform.position, loadPoint.transform.position) > 0.1f)
+        {
+            Vector3 moveDir = (loadPoint.transform.position - loadedBird.transform.position).normalized;
+
+            loadedBird.transform.position += moveDir * 7f * Time.deltaTime;
+
+            yield return null;
+        }
 
         while (true)
         {
@@ -74,7 +97,7 @@ public class Slingshot : MonoBehaviour
     {
         MouseReleased = false;
 
-        bird.ReadyToFly();
+        loadedBird.ReadyToFly();
 
         while (true)
         {
@@ -88,10 +111,10 @@ public class Slingshot : MonoBehaviour
 
             rb2d.MovePosition(dragPos);
 
-            bird.transform.position = this.transform.position;
+            loadedBird.transform.position = this.transform.position;
 
             // Bird looks at the Aim Point
-            bird.transform.right = aimPoint.position - bird.transform.position;
+            loadedBird.transform.right = aimPoint.position - loadedBird.transform.position;
 
             if (MouseReleased) { slingshotState = SlingshotState.Fire; break; }
 
@@ -101,19 +124,25 @@ public class Slingshot : MonoBehaviour
 
     private IEnumerator Fire()
     {
-        bird.collider2d.enabled = true;
+        loadedBird.collider2d.enabled = true;
+        loadedBird.rb2d.gravityScale  = 1f;
+        loadedBird.rb2d.velocity      = (aimPoint.position - this.transform.position) * 10;
 
-        bird.rb2d.gravityScale  = 1f;
+        loadedBird.Fly();
 
-        bird.rb2d.velocity = (aimPoint.position - this.transform.position) * 10;
-
-        bird.Fly();
-
-        BirdLoaded = false;
+        loadedBird = LoadNextBird();
 
         slingshotState = SlingshotState.Idle;
 
         yield return null;
+    }
+
+    private Bird LoadNextBird()
+    {
+        if (birdQueue.Count == 0)
+            return null;
+
+        return birdQueue.Dequeue();
     }
 
     private IEnumerator SlingshotStateMachine()
