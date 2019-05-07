@@ -268,15 +268,15 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 3
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
+  m_CollisionDetection: 1
+  m_Constraints: 4
 --- !u!231 &1645708230
 SpringJoint2D:
   m_ObjectHideFlags: 0
@@ -295,7 +295,7 @@ SpringJoint2D:
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 0
   m_Distance: 0.005
-  m_DampingRatio: 0.7
+  m_DampingRatio: 1
   m_Frequency: 2
 --- !u!114 &1645708229
 MonoBehaviour:
@@ -309,13 +309,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f90f05c655f16174aafa0f6abf59cb8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bird: {fileID: 0}
+  birds:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   aimPoint: {fileID: 1119869037988118114}
   loadPoint: {fileID: 844295287}
   stringRadius: 0.15
   MouseDragged: 0
   MouseReleased: 0
-  BirdLoaded: 0
 --- !u!114 &1940013438
 MonoBehaviour:
   m_ObjectHideFlags: 0

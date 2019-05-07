@@ -21,7 +21,7 @@ public class Slingshot : MonoBehaviour
     [SerializeField] private Transform aimPoint;
     [SerializeField] private Transform loadPoint;
 
-    [SerializeField] private float stringRadius = 0.15f;
+    [SerializeField] private float stringRadius = 0.2f;
 
     [HideInInspector] public bool MouseDragged;
     [HideInInspector] public bool MouseReleased;
